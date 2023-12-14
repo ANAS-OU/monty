@@ -1,5 +1,4 @@
 #include "monty.h"
-extern char *data;
 
 /**
  * push - a function that adds a new node to the stack.

@@ -11,6 +11,8 @@
 
 #define LINESIZE 256
 
+extern char *data;
+
 /*******************
  * Compix DataTypes
  *******************/
