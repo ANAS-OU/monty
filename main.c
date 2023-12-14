@@ -1,5 +1,8 @@
 #include "monty.h"
 
+/* global variable head of the stack */
+stack_t *top = NULL;
+
 /**
  * main - interpreter for Monty ByteCodes files.
  * @ac: argments count
@@ -14,5 +17,6 @@ int main(int ac, char **av)
 
 	op_handler(av[1]);
 
+	free_stack();	
 	return (0);
 }

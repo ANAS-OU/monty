@@ -37,7 +37,12 @@ void print_err(int status, ...)
 		case 7:
 			line_number = va_arg(args, int);
 			fprintf(stderr, "L%d: can't pint, stack empty", line_number);
+			break;
+		default:
+			break;
 	}
 	va_end(args);
+	free_stack();
+
 	exit(EXIT_FAILURE);
 }

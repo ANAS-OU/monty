@@ -1,5 +1,4 @@
 #include "monty.h"
-char *data; /* global variable */
 
 /**
  * op_handler - a function that handles
@@ -11,16 +10,16 @@ char *data; /* global variable */
 void op_handler(char *filename)
 {
 	FILE *fp;
-	char *opcode, line[LINESIZE];
+	char *opcode, *data, line[LINESIZE];
 	void (*handler)(stack_t **stack, unsigned int line_number);
-	stack_t *top;
+	stack_t *new_node;
 	unsigned int line_number;
+	int n;
 
 	fp = fopen(filename, "r");
 	if (!fp)
 		print_err(2, filename);
 
-	top = NULL;
 	line_number = 0;
 
 	while (fgets(line, LINESIZE, fp) != NULL)
@@ -30,7 +29,17 @@ void op_handler(char *filename)
 		data = strtok(NULL, " \t\n");
 
 		handler = get_op_func(opcode);
-		handler(&top, line_number);
+		if (!strcmp(opcode, "push"))
+		{
+			if (!_isdigit(data))
+				print_err(6, line_number);
+
+			n = atoi(data);
+			new_node = create_node(n);
+			handler(&new_node, line_number);
+		}
+		else
+			handler(&top, line_number);
 	}
 	fclose(fp);
 }

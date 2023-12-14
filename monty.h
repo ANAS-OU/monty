@@ -11,8 +11,6 @@
 
 #define LINESIZE 256
 
-extern char *data;
-
 /*******************
  * Compix DataTypes
  *******************/
@@ -47,16 +45,21 @@ typedef struct instruction_s
 } instruction_t;
 
 
+extern stack_t *top;
+
 /**********************
  * Functions Prototype
  **********************/
 void op_handler(char *filename);
 void (*get_op_func(char *opcode))(stack_t **stack, unsigned int line_number);
-void push(stack_t **top, unsigned int line_number);
-void pall(stack_t **top, unsigned int line_number);
-char **str_split(char *str, char *by);
-unsigned int token_count(char *str, char *by);
+void free_stack(void);
 void print_err(int status, ...);
 int _isdigit(char *str);
+stack_t *create_node(int data);
+
+/* operators prototype */
+void push(stack_t **top, unsigned int line_number);
+void pall(stack_t **top, unsigned int line_number);
+void pint(stack_t **top, unsigned int line_number);
 
 #endif /* MONTY_H */
