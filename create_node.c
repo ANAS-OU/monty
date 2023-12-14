@@ -9,7 +9,7 @@
 stack_t *create_node(int data)
 {
 	stack_t *new_node;
-	
+
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 		print_err(4);

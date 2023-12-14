@@ -2,7 +2,7 @@
 
 /**
  * push - a function that adds a new node to the stack.
- * @top: last node
+ * @new_node: pointer to the new node
  * @line_number: the readed line number.
  *
  * Return: nothing.

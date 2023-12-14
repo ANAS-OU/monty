@@ -17,6 +17,6 @@ int main(int ac, char **av)
 
 	op_handler(av[1]);
 
-	free_stack();	
+	free_stack();
 	return (0);
 }
