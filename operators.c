@@ -8,10 +8,8 @@
  * Return: nothing.
  */
 
-void push(stack_t **new_node, unsigned int line_number)
+void push(stack_t **new_node, __attribute__((unused))unsigned int line_number)
 {
-	(void)line_number;
-
 	(*new_node)->prev = top;
 	if (top)
 		top->next = *new_node;
@@ -26,10 +24,9 @@ void push(stack_t **new_node, unsigned int line_number)
  *
  * Return: nothing
  */
-void pall(stack_t **top, unsigned int line_number)
+void pall(stack_t **top, __attribute__((unused))unsigned int line_number)
 {
 	stack_t *curr;
-	(void)line_number;
 
 	curr = *top;
 	while (curr)
@@ -49,11 +46,7 @@ void pall(stack_t **top, unsigned int line_number)
 void pint(stack_t **top, unsigned int line_number)
 {
 	if (*top)
-	{
-		printf("----------\n");
 		printf("%d\n", (*top)->n);
-		printf("----------\n");
-	}
 	else
 		print_err(7, line_number);
 }

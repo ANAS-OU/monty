@@ -4,12 +4,12 @@
 /****************
  * std Libraries
  ****************/
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
 
-#define LINESIZE 256
 
 /*******************
  * Compix DataTypes
@@ -43,7 +43,6 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
 
 extern stack_t *top;
 

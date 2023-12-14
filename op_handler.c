@@ -10,10 +10,13 @@
 void op_handler(char *filename)
 {
 	FILE *fp;
-	char *opcode, *data, line[LINESIZE];
+	char *opcode, *data;
+	const char *delim = "\n ";
 	void (*handler)(stack_t **stack, unsigned int line_number);
-	stack_t *new_node;
 	unsigned int line_number;
+	stack_t *new_node;
+	char *buffer = NULL;
+	size_t len = 0;
 	int n;
 
 	fp = fopen(filename, "r");
@@ -21,12 +24,11 @@ void op_handler(char *filename)
 		print_err(2, filename);
 
 	line_number = 0;
-
-	while (fgets(line, LINESIZE, fp) != NULL)
+	while (getline(&buffer, &len, fp) != -1)
 	{
 		line_number++;
-		opcode = strtok(line, " \t\n");
-		data = strtok(NULL, " \t\n");
+		opcode = strtok(buffer, delim);
+		data = strtok(NULL, delim);
 
 		handler = get_op_func(opcode);
 		if (!handler)
@@ -43,5 +45,6 @@ void op_handler(char *filename)
 		else
 			handler(&top, line_number);
 	}
+	free(buffer);
 	fclose(fp);
 }
