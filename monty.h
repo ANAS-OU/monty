@@ -44,21 +44,23 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+
 extern stack_t *top;
+
 
 /**********************
  * Functions Prototype
  **********************/
-void op_handler(char *filename);
-void (*get_op_func(char *opcode))(stack_t **stack, unsigned int line_number);
+void (*get_op_func(char *))(stack_t **, unsigned int);
+void op_handler(char *);
 void free_stack(void);
 void print_err(int status, ...);
-int _isdigit(char *str);
-stack_t *create_node(int data);
+int _isdigit(char *);
+stack_t *create_node(int);
 
 /* operators prototype */
-void push(stack_t **top, unsigned int line_number);
-void pall(stack_t **top, unsigned int line_number);
-void pint(stack_t **top, unsigned int line_number);
+void push(stack_t **, unsigned int);
+void pall(stack_t **, unsigned int);
+void pint(stack_t **, unsigned int);
 
 #endif /* MONTY_H */
