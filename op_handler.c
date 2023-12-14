@@ -29,6 +29,8 @@ void op_handler(char *filename)
 		data = strtok(NULL, " \t\n");
 
 		handler = get_op_func(opcode);
+		if (!handler)
+			print_err(3, line_number, opcode);
 		if (!strcmp(opcode, "push"))
 		{
 			if (!_isdigit(data))
