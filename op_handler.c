@@ -20,24 +20,32 @@ void op_handler(char *filename)
 	int n;
 
 	fp = fopen(filename, "r");
-	if (!fp)
+	if (!fp || !filename)
 		print_err(2, filename);
 
 	line_number = 0;
 	while (getline(&buffer, &len, fp) != -1)
 	{
+		if (!buffer)
+			print_err(4);
+
 		line_number++;
 		opcode = strtok(buffer, delim);
 		data = strtok(NULL, delim);
 
-		handler = get_op_func(opcode);
-		if (!handler || !opcode)
+		if (!opcode)
 			print_err(3, line_number, opcode);
+
+		handler = get_op_func(opcode);
+
+		if (!handler)
+			print_err(3, line_number, opcode);
+
 		if (!strcmp(opcode, "push"))
 		{
 			if (!_isdigit(data))
 				print_err(6, line_number);
-
+			
 			n = atoi(data);
 			new_node = create_node(n);
 			handler(&new_node, line_number);
