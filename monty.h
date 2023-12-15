@@ -51,23 +51,38 @@ extern stack_t *top;
 /**********************
  * Functions Prototype
  **********************/
+/* get_op_func.c */
 void (*get_op_func(char *))(stack_t **, unsigned int);
+
+/* open_file.c */
 void open_file(char *);
+
+/* op_handler.c */
 void op_handler(char *, char *, int);
-void free_stack(void);
-int _isdigit(char *);
 stack_t *create_node(int);
 
-/* Operators Prototype */
-void push(stack_t **, unsigned int);
-void pall(stack_t **, unsigned int);
-void pint(stack_t **, unsigned int);
-void pop(stack_t **, unsigned int);
-void swap(stack_t **, unsigned int);
-void add(stack_t **, unsigned int);
-void nop(stack_t **, unsigned int);
+/* free_stack.c */
+void free_stack(void);
 
-/* Errors Handling */
+/* _isdigit.c */
+int _isdigit(char *);
+
+/* operators_1.c */
+void add_node(stack_t **, unsigned int);
+void print_all(stack_t **, unsigned int);
+void print_top(stack_t **, unsigned int);
+void remove_top(stack_t **, unsigned int);
+void swap_top(stack_t **, unsigned int);
+
+/* operators_2.c */
+void add_top(stack_t **, unsigned int);
+void do_none(stack_t **, unsigned int);
+void sub_top(stack_t **, unsigned int);
+void div_top(stack_t **, unsigned int);
+void mul_top(stack_t **, unsigned int);
+void mod_top(stack_t **, unsigned int);
+
+/* print_err.c */
 void err_1(int status, ...);
 void err_2(int status, ...);
 

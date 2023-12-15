@@ -55,23 +55,42 @@ void err_1(int status, ...)
  * err_2 - a function that handles errors
  * @status: the status code
  *
+ * opcode:
+ * (0) => swap
+ * (1) => add
+ * (2) => sub
+ * (3) => div
+ * (4) => mul
+ * (5) => mod
+ *
  * Return: nothing
  */
 void err_2(int status, ...)
 {
 	va_list args;
+	int ln, idx;
+	char opcode[6][4] = {
+		"swap",
+		"add",
+		"sub",
+		"div",
+		"mul",
+		"mod"
+	};
 
 	va_start(args, status);
+	ln = va_arg(args, int);
+
 	switch (status)
 	{
 		case 1:
-			fprintf(stderr, "L%d: can't swap, stack too short\n",
-					va_arg(args, int));
+			idx = va_arg(args, int);
+			fprintf(stderr, "L%d: can't %s, stack too short\n", ln, opcode[idx]);
 			break;
 		case 2:
-			fprintf(stderr, "L%d: can't add, stack too short\n",
-					va_arg(args, int));
+			fprintf(stderr, "L%d: division by zero\n", ln);
 			break;
+
 		default:
 			break;
 	}

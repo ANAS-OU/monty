@@ -11,13 +11,17 @@
 void (*get_op_func(char *opcode))(stack_t **stack, unsigned int line_number)
 {
 	instruction_t ops[] = {
-		{"push", push},
-		{"pall", pall},
-		{"pint", pint},
-		{"pop", pop},
-		{"swap", swap},
-		{"add", add},
-		{"nop", nop},
+		{"push", add_node},
+		{"pall", print_all},
+		{"pint", print_top},
+		{"pop", remove_top},
+		{"swap", swap_top},
+		{"add", add_top},
+		{"nop", do_none},
+		{"sub", sub_top},
+		{"div", div_top},
+		{"mul", mul_top},
+		{"mod", mod_top},
 		{NULL, NULL}
 	};
 	int i;

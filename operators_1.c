@@ -1,14 +1,16 @@
 #include "monty.h"
 
 /**
- * push - a function that adds a new node to the stack.
+ * add_node - a function that adds a new node to the stack.
  * @new_node: pointer to the new node
  * @line_number: the readed line number.
  *
  * Return: nothing.
  */
-void push(stack_t **new_node, __attribute__((unused))unsigned int line_number)
+void add_node(stack_t **new_node, unsigned int line_number)
 {
+	(void)line_number;
+
 	(*new_node)->prev = top;
 	if (top)
 		top->next = *new_node;
@@ -17,14 +19,14 @@ void push(stack_t **new_node, __attribute__((unused))unsigned int line_number)
 
 
 /**
- * pall - function that prints all the values on the stack,
+ * print_all - function that prints all the values on the stack,
  * starting from the top of the stack.
  * @top: last node
  * @line_number: the readed line number.
  *
  * Return: nothing
  */
-void pall(stack_t **top, __attribute__((unused))unsigned int line_number)
+void print_all(stack_t **top, __attribute__((unused))unsigned int line_number)
 {
 	stack_t *curr;
 
@@ -38,13 +40,13 @@ void pall(stack_t **top, __attribute__((unused))unsigned int line_number)
 
 
 /**
- * pint - function that prints the value of the top stack
+ * print_top - function that prints the value of the top stack
  * @top: last node
  * @line_number: the readed line number.
  *
  * Return: nothing
  */
-void pint(stack_t **top, unsigned int line_number)
+void print_top(stack_t **top, unsigned int line_number)
 {
 	if (*top)
 		printf("%d\n", (*top)->n);
@@ -54,14 +56,14 @@ void pint(stack_t **top, unsigned int line_number)
 
 
 /**
- * pop - a function that removes the
+ * remove_top - a function that removes the
  * top node in the stack
  * @top: last node
  * @line_number: the readed line number.
  *
  * Return: nothing
  */
-void pop(stack_t **top, unsigned int line_number)
+void remove_top(stack_t **top, unsigned int line_number)
 {
 	stack_t *tmp;
 
@@ -75,19 +77,19 @@ void pop(stack_t **top, unsigned int line_number)
 
 
 /**
- * swap - a function swaps the top
+ * swap_top - a function swaps the top
  * two elements of the stack.
  * @top: last node
  * @line_number: the readed line number.
  *
  * Return: nothing
  */
-void swap(stack_t **top, unsigned int line_number)
+void swap_top(stack_t **top, unsigned int line_number)
 {
 	stack_t *pre_top, *tmp;
 
 	if (!*top || !(*top)->prev)
-		err_2(1, line_number);
+		err_2(1, line_number, 0);
 
 	tmp = *top;
 
