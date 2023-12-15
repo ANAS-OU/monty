@@ -2,7 +2,7 @@
 
 ###
 
-<p align="left">This project focuses on the implementation of stacks (LIFO) and queues (FIFO) in the C programming language. It provides an understanding of these data structures and their applications. </p>
+<p align="left">This project focuses on the implementation of stacks (LIFO) and queues (FIFO) in the C programming language. It provides an understanding of these data structures and their applications.</p>
 
 ###
 
