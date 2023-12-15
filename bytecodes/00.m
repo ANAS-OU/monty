@@ -3,7 +3,6 @@ push 2
 push 3
 pall
 
-hello
 push 4
 pint
 pall

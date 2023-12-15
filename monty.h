@@ -52,7 +52,9 @@ extern stack_t *top;
  * Functions Prototype
  **********************/
 void (*get_op_func(char *))(stack_t **, unsigned int);
-void op_handler(char *);
+void open_file(char *);
+void op_handler(char *, char *, int);
+char *read_line(FILE *fp);
 void free_stack(void);
 void print_err(int status, ...);
 int _isdigit(char *);

@@ -3,56 +3,32 @@
 /**
  * op_handler - a function that handles
  * operation code <op_code>
- * @filename: the ByteCodes code filename
+ * @opcode: the opcode
+ * @data: the new node data
+ * @line_number: the readed line number
  *
  * Return: nothing.
  */
-void op_handler(char *filename)
+void op_handler(char *opcode, char *data, int line_number)
 {
-	FILE *fp;
-	char *opcode, *data;
-	const char *delim = "\n ";
-	unsigned int line_number;
-	char *buffer = NULL;
-	stack_t *new_node;
 	void (*handler)(stack_t **stack, unsigned int line_number);
-	size_t len = 0;
+	stack_t *new_node;
 	int n;
 
-	fp = fopen(filename, "r");
-	if (!fp || !filename)
-		print_err(2, filename);
+	handler = get_op_func(opcode);
 
-	line_number = 0;
-	while (getline(&buffer, &len, fp) != -1)
+	if (!handler)
+		print_err(3, line_number, opcode);
+
+	if (!strcmp(opcode, "push"))
 	{
-		if (!buffer)
-			print_err(4);
+		if (!_isdigit(data))
+			print_err(6, line_number);
 
-		line_number++;
-		opcode = strtok(buffer, delim);
-		data = strtok(NULL, delim);
-
-		if (!opcode)
-			continue;
-
-		handler = get_op_func(opcode);
-
-		if (!handler)
-			print_err(3, line_number, opcode);
-
-		if (!strcmp(opcode, "push"))
-		{
-			if (!_isdigit(data))
-				print_err(6, line_number);
-			
-			n = atoi(data);
-			new_node = create_node(n);
-			handler(&new_node, line_number);
-		}
-		else
-			handler(&top, line_number);
+		n = atoi(data);
+		new_node = create_node(n);
+		handler(&new_node, line_number);
 	}
-	free(buffer);
-	fclose(fp);
+	else
+		handler(&top, line_number);
 }
