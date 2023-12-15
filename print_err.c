@@ -9,6 +9,8 @@
 void print_err(int status, ...)
 {
 	va_list args;
+	int ln;
+	char *opc;
 
 	va_start(args, status);
 	switch (status)
@@ -21,9 +23,9 @@ void print_err(int status, ...)
 					va_arg(args, char*));
 			break;
 		case 3:
-			fprintf(stderr, "L%d: unknown instruction %s\n",
-					va_arg(args, int),
-					va_arg(args, char*));
+			ln = va_arg(args, int);
+			opc = va_arg(args, char*);
+			fprintf(stderr, "L%d: unknown instruction %s\n", ln, opc);
 			break;
 		case 4:
 			fprintf(stderr, "Error: malloc failed\n");
@@ -45,6 +47,5 @@ void print_err(int status, ...)
 	}
 	va_end(args);
 	free_stack();
-
 	exit(EXIT_FAILURE);
 }
