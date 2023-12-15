@@ -50,3 +50,23 @@ void pint(stack_t **top, unsigned int line_number)
 	else
 		print_err(7, line_number);
 }
+
+/**
+ * pop - a function that removes the
+ * top node in the stack
+ * @top: last node
+ * @line_number: the readed line number.
+ *
+ * Return: nothing
+ */
+void pop(stack_t **top, unsigned int line_number)
+{
+	stack_t *tmp;
+
+	if (!*top)
+		print_err(8, line_number);
+
+	tmp = *top;
+	*top = (*top)->prev;
+	free(tmp);
+}

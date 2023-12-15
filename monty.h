@@ -62,5 +62,6 @@ stack_t *create_node(int);
 void push(stack_t **, unsigned int);
 void pall(stack_t **, unsigned int);
 void pint(stack_t **, unsigned int);
+void pop(stack_t **, unsigned int);
 
 #endif /* MONTY_H */
