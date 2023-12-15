@@ -8,8 +8,8 @@
  */
 void print_err(int status, ...)
 {
-	int line_number;
-	char *opcode;
+	int ln;
+	char *opc;
 	va_list args;
 
 	va_start(args, status);
@@ -19,24 +19,28 @@ void print_err(int status, ...)
 			fprintf(stderr, "USAGE: monty file\n");
 			break;
 		case 2:
-			fprintf(stderr, "Error: Can't open file %s", va_arg(args, char*));
+			fprintf(stderr, "Error: Can't open file %s\n",
+					va_arg(args, char*));
 			break;
 		case 3:
-			line_number = va_arg(args, int);
-			opcode = va_arg(args, char*);
-			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
+			ln = va_arg(args, int);
+			opc = va_arg(args, char*);
+			fprintf(stderr, "L%d: unknown instruction %s\n", ln, opc);
 			break;
 		case 4:
 			fprintf(stderr, "Error: malloc failed\n");
 			break;
 		case 6:
-			fprintf(stderr, "L%d: usage: push integer\n", va_arg(args, int));
+			fprintf(stderr, "L%d: usage: push integer\n",
+					va_arg(args, int));
 			break;
 		case 7:
-			fprintf(stderr, "L%d: can't pint, stack empty", va_arg(args, int));
+			fprintf(stderr, "L%d: can't pint, stack empty\n",
+					va_arg(args, int));
 			break;
 		case 8:
-			fprintf(stderr, "L%d: can't pop an empty stack", va_arg(args, int));
+			fprintf(stderr, "L%d: can't pop an empty stack\n",
+					va_arg(args, int));
 			break;
 		default:
 			break;
