@@ -11,7 +11,7 @@ void op_handler(char *filename)
 {
 	FILE *fp;
 	char *opcode, *data;
-	const char *delim = "\t\n ";
+	const char *delim = "\n ";
 	unsigned int line_number;
 	char *buffer = NULL;
 	stack_t *new_node;
@@ -34,7 +34,7 @@ void op_handler(char *filename)
 		data = strtok(NULL, delim);
 
 		if (!opcode)
-			print_err(3, line_number, opcode);
+			continue;
 
 		handler = get_op_func(opcode);
 
