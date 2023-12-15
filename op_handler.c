@@ -12,10 +12,10 @@ void op_handler(char *filename)
 	FILE *fp;
 	char *opcode, *data;
 	const char *delim = "\t\n ";
-	void (*handler)(stack_t **stack, unsigned int line_number);
 	unsigned int line_number;
-	stack_t *new_node;
 	char *buffer = NULL;
+	stack_t *new_node;
+	void (*handler)(stack_t **stack, unsigned int line_number);
 	size_t len = 0;
 	int n;
 
