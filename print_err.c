@@ -68,6 +68,10 @@ void err_2(int status, ...)
 			fprintf(stderr, "L%d: can't swap, stack too short\n",
 					va_arg(args, int));
 			break;
+		case 2:
+			fprintf(stderr, "L%d: can't add, stack too short\n",
+					va_arg(args, int));
+			break;
 		default:
 			break;
 	}

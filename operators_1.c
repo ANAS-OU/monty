@@ -7,7 +7,6 @@
  *
  * Return: nothing.
  */
-
 void push(stack_t **new_node, __attribute__((unused))unsigned int line_number)
 {
 	(*new_node)->prev = top;
