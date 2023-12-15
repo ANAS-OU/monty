@@ -8,8 +8,6 @@
  */
 void print_err(int status, ...)
 {
-	int ln;
-	char *opc;
 	va_list args;
 
 	va_start(args, status);
@@ -23,9 +21,9 @@ void print_err(int status, ...)
 					va_arg(args, char*));
 			break;
 		case 3:
-			ln = va_arg(args, int);
-			opc = va_arg(args, char*);
-			fprintf(stderr, "L%d: unknown instruction %s\n", ln, opc);
+			fprintf(stderr, "L%d: unknown instruction %s\n",
+					va_arg(args, int),
+					va_arg(args, char*));
 			break;
 		case 4:
 			fprintf(stderr, "Error: malloc failed\n");
