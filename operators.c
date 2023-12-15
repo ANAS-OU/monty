@@ -16,6 +16,7 @@ void push(stack_t **new_node, __attribute__((unused))unsigned int line_number)
 	top = *new_node;
 }
 
+
 /**
  * pall - function that prints all the values on the stack,
  * starting from the top of the stack.
@@ -36,6 +37,7 @@ void pall(stack_t **top, __attribute__((unused))unsigned int line_number)
 	}
 }
 
+
 /**
  * pint - function that prints the value of the top stack
  * @top: last node
@@ -48,8 +50,9 @@ void pint(stack_t **top, unsigned int line_number)
 	if (*top)
 		printf("%d\n", (*top)->n);
 	else
-		print_err(7, line_number);
+		err_1(7, line_number);
 }
+
 
 /**
  * pop - a function that removes the
@@ -64,9 +67,35 @@ void pop(stack_t **top, unsigned int line_number)
 	stack_t *tmp;
 
 	if (!*top)
-		print_err(8, line_number);
+		err_1(8, line_number);
 
 	tmp = *top;
 	*top = (*top)->prev;
 	free(tmp);
+}
+
+
+/**
+ * swap - a function swaps the top
+ * two elements of the stack.
+ * @top: last node
+ * @line_number: the readed line number.
+ *
+ * Return: nothing
+ */
+void swap(stack_t **top, unsigned int line_number)
+{
+	stack_t *pre_top, *tmp;
+
+	if (!*top || !(*top)->prev)
+		err_2(1, line_number);
+
+	tmp = *top;
+
+	pre_top = tmp->prev;
+	tmp->prev = pre_top->prev;
+	tmp->next = pre_top;
+	pre_top->prev = tmp;
+
+	*top = pre_top;
 }

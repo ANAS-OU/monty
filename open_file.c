@@ -18,13 +18,13 @@ void open_file(char *filename)
 
 	fp = fopen(filename, "r");
 	if (!fp || !filename)
-		print_err(2, filename);
+		err_1(2, filename);
 
 	while (getline(&buffer, &len, fp) != -1)
 	{
 		line_number++;
 		if (!buffer)
-			print_err(4);
+			err_1(4);
 
 		opcode = strtok(buffer, delim);
 		data = strtok(NULL, delim);

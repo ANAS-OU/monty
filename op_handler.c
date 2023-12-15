@@ -18,12 +18,12 @@ void op_handler(char *opcode, char *data, int line_number)
 	handler = get_op_func(opcode);
 
 	if (!handler)
-		print_err(3, line_number, opcode);
+		err_1(3, line_number, opcode);
 
 	if (!strcmp(opcode, "push"))
 	{
 		if (!_isdigit(data))
-			print_err(6, line_number);
+			err_1(6, line_number);
 
 		n = atoi(data);
 		new_node = create_node(n);

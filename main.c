@@ -13,7 +13,7 @@ stack_t *top = NULL;
 int main(int ac, char **av)
 {
 	if (ac != 2)
-		print_err(1);
+		err_1(1);
 
 	open_file(av[1]);
 

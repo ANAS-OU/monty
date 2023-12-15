@@ -54,16 +54,19 @@ extern stack_t *top;
 void (*get_op_func(char *))(stack_t **, unsigned int);
 void open_file(char *);
 void op_handler(char *, char *, int);
-char *read_line(FILE *fp);
 void free_stack(void);
-void print_err(int status, ...);
 int _isdigit(char *);
 stack_t *create_node(int);
 
-/* operators prototype */
+/* Operators Prototype */
 void push(stack_t **, unsigned int);
 void pall(stack_t **, unsigned int);
 void pint(stack_t **, unsigned int);
 void pop(stack_t **, unsigned int);
+void swap(stack_t **, unsigned int);
+
+/* Errors Handling */
+void err_1(int status, ...);
+void err_2(int status, ...);
 
 #endif /* MONTY_H */

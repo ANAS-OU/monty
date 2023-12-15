@@ -1,12 +1,12 @@
 #include "monty.h"
 
 /**
- * print_err - a function that handles errors
+ * err_1 - a function that handles errors
  * @status: the status code
  *
  * Return: nothing
  */
-void print_err(int status, ...)
+void err_1(int status, ...)
 {
 	va_list args;
 	int ln;
@@ -47,5 +47,32 @@ void print_err(int status, ...)
 	}
 	va_end(args);
 	free_stack();
+	exit(EXIT_FAILURE);
+}
+
+
+/**
+ * err_2 - a function that handles errors
+ * @status: the status code
+ *
+ * Return: nothing
+ */
+void err_2(int status, ...)
+{
+	va_list args;
+
+	va_start(args, status);
+	switch (status)
+	{
+		case 1:
+			fprintf(stderr, "L%d: can't swap, stack too short\n",
+					va_arg(args, int));
+			break;
+		default:
+			break;
+	}
+	va_end(args);
+	free_stack();
+
 	exit(EXIT_FAILURE);
 }
