@@ -68,5 +68,6 @@ void pop(stack_t **top, unsigned int line_number)
 
 	tmp = *top;
 	*top = (*top)->prev;
+	(*top)->next = NULL;
 	free(tmp);
 }
