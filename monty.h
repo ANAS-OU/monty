@@ -80,7 +80,13 @@ void do_none(stack_t **, unsigned int);
 void sub_top(stack_t **, unsigned int);
 void div_top(stack_t **, unsigned int);
 void mul_top(stack_t **, unsigned int);
+
+/* operators_3.c */
 void mod_top(stack_t **, unsigned int);
+void print_char(stack_t **, unsigned int);
+void print_string(stack_t **, unsigned int);
+void rot_left(stack_t **, unsigned int);
+void rot_right(stack_t **, unsigned int);
 
 /* print_err.c */
 void err_1(int status, ...);

@@ -90,6 +90,12 @@ void err_2(int status, ...)
 		case 2:
 			fprintf(stderr, "L%d: division by zero\n", ln);
 			break;
+		case 3:
+			fprintf(stderr, "L%d: can't pchar, value out of range\n", ln);
+			break;
+		case 4:
+			fprintf(stderr, "L%d: can't pchar, stack empty\n", ln);
+			break;
 
 		default:
 			break;

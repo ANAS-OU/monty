@@ -22,6 +22,10 @@ void (*get_op_func(char *opcode))(stack_t **stack, unsigned int line_number)
 		{"div", div_top},
 		{"mul", mul_top},
 		{"mod", mod_top},
+		{"pchar", print_char},
+		{"pstr", print_string},
+		{"rotl", rot_left},
+		{"rotr", rot_right},
 		{NULL, NULL}
 	};
 	int i;
