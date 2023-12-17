@@ -69,7 +69,7 @@ void err_2(int status, ...)
 {
 	va_list args;
 	int ln, idx;
-	char opcode[6][4] = {
+	char opcode[6][5] = {
 		"swap",
 		"add",
 		"sub",
