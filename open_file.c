@@ -29,7 +29,7 @@ void open_file(char *filename)
 		opcode = strtok(buffer, delim);
 		data = strtok(NULL, delim);
 
-		if (!opcode || buffer[0] == '#')
+		if (!opcode || opcode[0] == '#')
 			continue;
 
 		op_handler(opcode, data, line_number);
