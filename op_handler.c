@@ -5,11 +5,12 @@
  * operation code <op_code>
  * @opcode: the opcode
  * @data: the new node data
- * @line_number: the readed line number
+ * @ln: the readed line number
+ * @is_queue: boolean to check is it a queue.
  *
  * Return: nothing.
  */
-void op_handler(char *opcode, char *data, int line_number)
+void op_handler(char *opcode, char *data, unsigned int ln, int is_queue)
 {
 	void (*handler)(stack_t **stack, unsigned int line_number);
 	stack_t *new_node;
@@ -18,19 +19,22 @@ void op_handler(char *opcode, char *data, int line_number)
 	handler = get_op_func(opcode);
 
 	if (!handler)
-		err_1(3, line_number, opcode);
+		err_1(3, ln, opcode);
 
 	if (!strcmp(opcode, "push"))
 	{
+		if (is_queue)
+			handler = add_to_queue;
+
 		if (!_isdigit(data))
-			err_1(6, line_number);
+			err_1(6, ln);
 
 		n = atoi(data);
 		new_node = create_node(n);
-		handler(&new_node, line_number);
+		handler(&new_node, ln);
 	}
 	else
-		handler(&top, line_number);
+		handler(&top, ln);
 }
 
 
@@ -53,4 +57,31 @@ stack_t *create_node(int data)
 	new_node->next = NULL;
 
 	return (new_node);
+}
+
+
+/**
+ * add_to_queue - a function that adds new nodes in the
+ * front of the stack.
+ * @new_node: added node to the queue
+ * @line_number: readed line number.
+ *
+ * Return: nothing.
+ */
+void add_to_queue(stack_t **new_node, unsigned int line_number)
+{
+	stack_t *tmp;
+	(void)line_number;
+
+	if (!top)
+		top = *new_node;
+	else
+	{
+		tmp = top;
+		while (tmp->prev)
+			tmp = tmp->prev;
+
+		(*new_node)->next = tmp;
+		tmp->prev = *new_node;
+	}
 }

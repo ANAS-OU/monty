@@ -58,8 +58,9 @@ void (*get_op_func(char *))(stack_t **, unsigned int);
 void open_file(char *);
 
 /* op_handler.c */
-void op_handler(char *, char *, int);
+void op_handler(char *, char *, unsigned int, int);
 stack_t *create_node(int);
+void add_to_queue(stack_t **new_node, unsigned int line_number);
 
 /* free_stack.c */
 void free_stack(void);
